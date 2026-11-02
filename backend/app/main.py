@@ -11,6 +11,8 @@ from .routers import employees, tasks, dashboard
 
 load_dotenv()
 
+FORNTEND_URL = os.getenv("FRONTEND_URL")
+
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
@@ -21,8 +23,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        os.getenv("FRONTEND_URL" ),
-        
+        FORNTEND_URL, 
     ],
     allow_credentials=True,
     allow_methods=["*"],
